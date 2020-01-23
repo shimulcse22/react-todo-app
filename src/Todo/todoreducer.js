@@ -14,7 +14,8 @@ const rootreducer = (state = todoSate,action) =>{
                ...state
         };
         case TODO.DELETE_ITEM:
-            state.items = action.payload
+            state.items = action.payload.filterItem;
+            state.completedItems = action.payload.filterItemCompleted
             return {
                ...state
         };

@@ -52,15 +52,17 @@ class App extends Component {
   deleteItem(key){
     const filterItem = this.props.items.filter(item=>
     item.key!==key);
-    this.props.deleteItemDispatch(filterItem) ;
+    const filterItemCompleted = this.props.completedItems.filter(item=> item.key!==key);
+    let payload ={};
+    payload.filterItem = filterItem;
+    payload.filterItemCompleted = filterItemCompleted;
+    this.props.deleteItemDispatch(payload) ;
   }
   showItems(e,data){
     e.preventDefault();
-    console.log(data);
     this.props.setShowItems(data);
   }
   clearCompleted(){
-    console.log("um e")
     this.props.clearCompletedDispatch();
   }
   render(){
@@ -73,7 +75,6 @@ class App extends Component {
              value={this.state.currentItems.text}
              onChange={this.handleInput}
             />
-            <button type='submit'> Add </button>
         </form>
         <ListItems 
           setUpdateInputValue={this.setUpdateInputValue}
@@ -89,7 +90,7 @@ class App extends Component {
             <button  onClick={(e)=>this.showItems(e,TODO.SHOW_ACTIVE)}> Active </button>
             <button  onClick={(e)=>this.showItems(e,TODO.SHOW_COMPLETED)}> Completed </button>
             </p>}
-            {this.props.completedItems.length!==0 &&<p className='right' onClick={this.clearCompleted}>
+            {this.props.completedItems.length!==0 && <p className='right' onClick={this.clearCompleted}>
               clear completed
             </p>}
             </div>
