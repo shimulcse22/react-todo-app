@@ -65,13 +65,11 @@ const rootreducer = (state = todoSate,action) =>{
             state.activeBool = false;
             return {...state};
         case TODO.CLEAR_COMPLETED:
-            console.log("the reducer");
             const removeItem = state.items.filter(item => !item.completed);
             state.completedItems =[];
             state.items = removeItem;
             state.completedBool = false;
             state.activeBool = false;
-            console.log(state);
             return {...state};
         default:
             return state;

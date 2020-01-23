@@ -1,17 +1,12 @@
 import React,{useState} from 'react';
 import './ListItems.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash,faCheckCircle, faHandHolding } from '@fortawesome/free-solid-svg-icons'
+import { faTrash,faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 
 const ListItems =(props) =>{
-    
-    //console.log("the prop", props);
     const [input,setInput] = useState('');
     const handleSubmit = (e,key,text)=>{
-        
-        console.log('um here');
         e.preventDefault();
-        console.log(input);
         let payload = {};
         if(input === ''){
             payload.data = text;
